@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import './Pokemon.css';
+import PokemonData from './PokemonData';
+import { Route } from 'react-router-dom';
 
 class Pokemon extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			pokemonData: {},
 			name: '',
+			error: '',
 		}
 	}
 	onChange = ev => {
@@ -15,20 +17,9 @@ class Pokemon extends Component {
 		this.setState(o);
 	};
 	onSubmit = ev => {
-		ev.preventDefault();
-		fetch(`https://pokeapi.co/api/v2/pokemon/${this.state.name.toLowerCase()}/`)
-			.then(data => data.json())
-			.then(data => {
-				const pokemonData = {};
-				console.log(data);
-				pokemonData.imageURL = data.sprites.front_default;
-				pokemonData.types = data.types.map(x => x.type.name);
-				pokemonData.name = data.name.charAt(0).toUpperCase()+data.name.slice(1);
-				pokemonData.id = data.id;
-				pokemonData.stats = {};
-				data.stats.forEach(x => pokemonData.stats[x.stat.name]=x.base_stat);
-				console.log(pokemonData);
-			});
+		const requestedMon = this.state.name.toLowerCase(); //fortunately, IDs and names work equally well by default.
+		ev.preventDefault();                                //Thanks, PokeAPI!
+		this.props.history.push(`/pokemon/${requestedMon}`);
 	}
 	render() {
 		return (
@@ -43,6 +34,8 @@ class Pokemon extends Component {
 					/>
 					<input type="submit" value="Search"/>
 				</form>
+				<p className="error">{this.state.error}</p>
+				<Route path="/pokemon/:name" component={PokemonData}/> 
 			</div>
 		);
 	}
