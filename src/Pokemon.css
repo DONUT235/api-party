@@ -1,0 +1,11 @@
+.Pokemon input {
+	width: 80%;
+	font-size: 16pt;
+	border: 1px solid black;
+	box-sizing: border-box;
+}
+
+.Pokemon input[type=submit] {
+	background-color: red;
+	color: white;
+}
