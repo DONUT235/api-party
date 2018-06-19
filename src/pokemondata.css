@@ -1,0 +1,21 @@
+.baseStats {
+	outline: '1px solid black';
+	text-align: left;
+}
+.baseStats .statLabel {
+	width: 8em;
+	text-align: left;
+	display: inline-block;
+	position: relative;
+	left: 0%;
+}
+.baseStats .baseStatBar {
+	text-align: right;
+	background-color: aqua;
+	display: inline-block;
+}
+.baseStats li {
+	margin-top: 4px;
+	margin-bottom: 4px;
+	list-style-type: none;
+}

@@ -8,16 +8,16 @@ class PokemonData extends Component {
 			error: '',
 			pokemonData: {
 				imageURL: '',
-				types: [],
+				types: ['grass'],
 				name: '',
-				id: null,
+				id: 1,
 				stats: {
-					hp: 0,
-					attack: 0,
-					defense: 0,
+					hp: 100,
+					attack: 20,
+					defense: 90,
 					'special-attack': 0,
 					'special-defense': 0,
-					speed: 0,
+					speed: 120,
 				},
 				flavorText: '',
 			},
@@ -87,7 +87,7 @@ class PokemonData extends Component {
 							<ul className="baseStats">
 								{Object.keys(this.state.pokemonData.stats).map(stat => (
 									<li key={stat}>
-										<label>{stat}:</label>
+										<div className="statLabel">{stat}:</div>
 										<div 
 											className="baseStatBar" 
 											style={{width: (this.state.pokemonData.stats[stat]*100/255)+'%'}}
